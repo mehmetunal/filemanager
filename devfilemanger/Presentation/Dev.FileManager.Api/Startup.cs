@@ -1,12 +1,10 @@
+using Dev.Core.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace Dev.FileManager.Api
 {
@@ -16,6 +14,18 @@ namespace Dev.FileManager.Api
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllers();
+
+            services.AddSingleton<IFileManagerProviderBase>(
+                new FileManagerProviderBase(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")));
+
+            services.AddSingleton<IDevFileProvider, DevFileProvider>();
+            
+            services.AddSingleton<IFilesManager, FilesManager>();
+
+            services.AddSingleton<IFileProvider>(
+               new PhysicalFileProvider(
+                   Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -26,14 +36,14 @@ namespace Dev.FileManager.Api
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseHttpsRedirection();
             app.UseRouting();
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapControllers();
             });
         }
     }
