@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>File Manager</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="content/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="content/style/site.css">
+    <link rel="stylesheet" href="content/style/uploader.css">
+    <link rel="stylesheet" href="content/style/reset.css">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="control">
+            <button onclick="alert('back folder')"><span class="material-icons">chevron_left</span></button>
+            <button onclick="alert('forward folder')"><span class="material-icons">chevron_right</span></button>
+            <button onclick="alert('top folder')"><span class="material-icons">expand_less</span></button>
+        </div>
+        <div class="breadcrumb">
+            <ul>
+                <li><a href="#">Folder</a></li>
+                <li><a href="#">Folder 1</a></li>
+                <li><a href="#">New Folder</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="content">
+        <div class="tree">
+            <ul>
+                <li><i class="fa fa-folder-open"></i> Project
+                    <ul>
+                        <li><i class="fa fa-folder-open"></i> Opened Folder <span>- 15kb</span>
+                            <ul>
+                                <li><i class="fa fa-folder-open"></i> css</li>
+                                <li><i class="fa fa-folder"></i> Folder close <span>- 10kb</span>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><i class="fa fa-folder"></i> Folder close <span>- 420kb</span>
+
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="files-list">
+            <ul>
+                <li><span class="material-icons">folder</span><strong>AAA</strong></li>
+                <li><span class="material-icons">folder</span><strong>AAA</strong></li>
+                <li><span class="material-icons">description</span><strong>AAA</strong></li>
+                <li><span class="material-icons">folder</span><strong>AAA</strong></li>
+                <li><span class="material-icons">folder</span><strong>AAA</strong></li>
+                <li><span class="material-icons">folder</span><strong>AAA</strong></li>
+                <li><span class="material-icons">folder</span><strong>AAA</strong></li>
+                <li><span class="material-icons">folder</span><strong>AAA</strong></li>
+                <li><span class="material-icons">folder</span><strong>AAA</strong></li>
+                <li><span class="material-icons">folder</span><strong>AAA</strong></li>
+                <li><span class="material-icons">folder</span><strong>AAA</strong></li>
+                <li><span class="material-icons">folder</span><strong>AAA</strong></li>
+                <li><span class="material-icons">folder</span><strong>AAA</strong></li>
+                <li><span class="material-icons">folder</span><strong>AAA</strong></li>
+                <li><span class="material-icons">folder</span><strong>AAA</strong></li>
+                <li><span class="material-icons">folder</span><strong>AAA</strong></li>
+                <li><span class="material-icons">folder</span><strong>AAA</strong></li>
+                <li><span class="material-icons">folder</span><strong>AAA</strong></li>
+                <li><span class="material-icons">folder</span><strong>AAA</strong></li>
+                <li><span class="material-icons">folder</span><strong>AAA</strong></li>
+                <li><span class="material-icons">folder</span><strong>AAA</strong></li>
+                <li><span class="material-icons">folder</span><strong>AAA</strong></li>
+                <li><span class="material-icons">folder</span><strong>AAA</strong></li>
+                <li><span class="material-icons">folder</span><strong>AAA</strong></li>
+                <li><span class="material-icons">folder</span><strong>AAA</strong></li>
+                <li><span class="material-icons">folder</span><strong>AAA</strong></li>
+                <li><span class="material-icons">folder</span><strong>AAA</strong></li>
+            </ul>
+        </div>
+        <div class="file-detail">
+            <label class="upload-btn">
+                upload
+                <input type="file" multiple  id="file-upload-input" style="display: none;">
+            </label>
+            <div id="form-upload"></div>
+        </div>
+    </div>
+</div>
+<script src="/content/js/site.js"></script>
+<script src="content/js/uploader.js"></script>
+
+</body>
+</html>

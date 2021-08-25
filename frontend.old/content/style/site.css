@@ -1,0 +1,41 @@
+/*ELEMENT START*/
+button { border: none }
+/*ELEMENT END*/
+
+.container { }
+.container .header { display: flex; }
+.container .header .control { display: flex; }
+.container .header .control button { border: 1px solid #80808026 }
+.container .header .control button:nth-child(2) { border-top: 1px solid #80808026; border-bottom:  1px solid #80808026 }
+.container .header .breadcrumb { width: 100%; }
+.container .header .breadcrumb ul { display:flex;  background-color: #eee;  padding: 10px 16px;}
+.container .header .breadcrumb ul li { display: inline; font-size: 18px; }
+.container .header .breadcrumb ul li+li:before { padding: 8px; color: black; content: "/\00a0"; }
+.container .header .breadcrumb ul li a { color: gray; text-decoration: none; }
+.container .header .breadcrumb ul li a:hover { color: #01447e; text-decoration: underline; }
+
+.container .content { display: flex }
+.container .content .tree { width: 13%; border: 1px solid #8080802e; }
+.container .content .tree { position: relative; background: white; font-family: "Roboto Mono", monospace;
+    font-size: 0.85rem; font-weight: 400; line-height: 1.5; color: #212529; }
+.container .content .tree span { font-size: 13px; font-style: italic; letter-spacing: 0.4px; color: #a8a8a8; }
+.container .content .tree .fa-folder-open, .tree .fa-folder { color: #007bff; }
+.container .content .tree ul { padding-left: 5px; list-style: none; }
+.container .content .tree ul li { cursor: pointer ; position: relative; padding-top: 5px; padding-bottom: 5px;
+    padding-left: 15px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+.container .content .tree ul li:before { position: absolute; top: 15px; left: 0; width: 10px; height: 1px; margin: auto;
+    content: ""; background-color: #666; }
+.container .content .tree ul li:after { position: absolute; top: 0; bottom: 0; left: 0; width: 1px; height: 100%;
+    content: ""; background-color: #666; }
+.container .content .tree ul li:last-child:after { height: 15px; }
+.container .content .tree ul a { cursor: pointer; }
+.container .content .tree ul a:hover { text-decoration: none; }
+.container .content .files-list { width: 67%; border: 1px solid #8080802e; }
+.container .content .files-list ul { display: flex; justify-content: center; flex-wrap:wrap; }
+.container .content .files-list ul li { margin: 15px; color: #c5c5c5; background: #eeeeee73; border: 1px solid #eeeeee73;
+    cursor: pointer; }
+.container .content .files-list ul li *{ display: block; }
+.container .content .files-list ul li:hover { background: red }
+.container .content .files-list ul li .material-icons { font-size: 109px; }
+.container .content .file-detail { width: 20%; border: 1px solid #8080802e; }
+
