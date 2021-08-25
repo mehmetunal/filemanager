@@ -1,10 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
+
 <body>
-$END$
+
+
+<input type="file" id="fileToUpload">
+<button onclick="sendRequest();">SEND</button>
+<div id="fileName"></div>
+<div id="fileSize"></div>
+<div id="fileType"></div>
+<div id="progressNumber"></div>
+
+<script>
+    window.BlobBuilder = window.MozBlobBuilder || window.WebKitBlobBuilder || window.BlobBuilder;
+    var blob;
+    var start;
+    var end;
+    var part;
+    var SIZE;
+    var BYTES_PER_CHUNK;
+    var xhr;
+    var chunk;
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const fileInput = document.getElementById('fileToUpload');
+        fileInput.onchange = () => {
+            const selectedFiles = fileInput.files;
+            for (let i = 0; i < selectedFiles.length; i++) {
+                console.log(i);
+                let file = selectedFiles[i];
+                console.log(file);
+                sendRequest(file);
+            }
+        }
+    }, false);
+
+
+    function sendRequest(file) {
+        blob = file; //document.getElementById('fileToUpload').files[0];
+        BYTES_PER_CHUNK = 1048576 * 28; // 29MB chunk sizes.
+        SIZE = blob.size;
+        start = 0;
+        part = 0;
+        end = BYTES_PER_CHUNK;
+
+        chunk = blob.slice(start, end);
+        uploadFile(chunk, part);
+        start = end;
+        end = start + BYTES_PER_CHUNK;
+        part = part + 1;
+    };
+
+    //------------------------------------------------------------------------------------------------------------------------------------
+    //file info
+    function fileSelected(file) {
+        if (file) {
+            var fileSize = 0;
+            if (file.size > 1024 * 1024)
+                fileSize = (Math.round(file.size * 100 / (1024 * 1024)) / 100).toString() + 'MB';
+            else
+                fileSize = (Math.round(file.size * 100 / 1024) / 100).toString() + 'KB';
+
+            document.getElementById('fileName').innerHTML = 'Name: ' + file.name;
+            document.getElementById('fileSize').innerHTML = 'Size: ' + fileSize;
+            document.getElementById('fileType').innerHTML = 'Type: ' + file.type;
+        }
+    };
+
+    //------------------------------------------------------------------------------------------------------------------------------------
+
+    function uploadFile(blobFile, part) {
+        var file = document.getElementById('fileToUpload').files[0];
+        var fd = new FormData();
+        fd.append("fileToUpload", blobFile);
+
+        var xhr = new XMLHttpRequest();
+        xhr.upload.addEventListener("progress", uploadProgress, false);
+        xhr.addEventListener("load", uploadComplete, false);
+        xhr.addEventListener("error", uploadFailed, false);
+        xhr.addEventListener("abort", uploadCanceled, false);
+
+
+        var api_file = "https://localhost:44358/api/files/upload"
+
+        xhr.open("POST", api_file + "?" + "file=" + file.name + "&num=" + parseInt(part));
+        xhr.onload = function (e) {
+            //alert("loaded!");
+        };
+
+        xhr.setRequestHeader('Cache-Control', 'no-cache');
+        xhr.send(fd);
+        return;
+
+    };
+
+    //------------------------------------------------------------------------------------------------------------------------------------
+
+    function uploadFinsh() {
+        var file = document.getElementById('fileToUpload').files[0];
+
+        var xhr = new XMLHttpRequest();
+        xhr.upload.addEventListener("progress", uploadProgress, false);
+        xhr.addEventListener("error", uploadFailed, false);
+        xhr.addEventListener("abort", uploadCanceled, false);
+
+
+        var api_file = "https://localhost:44358/api/files/uploadComplete"
+
+        xhr.open("POST", api_file + "?" + "fileName=" + file.name);
+        xhr.onload = function (e) {
+            //alert("loaded!");
+        };
+
+        xhr.setRequestHeader('Cache-Control', 'no-cache');
+        xhr.send();
+        return;
+
+    }
+
+    //------------------------------------------------------------------------------------------------------------------------------------
+
+    function uploadProgress(evt) {
+        if (evt.lengthComputable) {
+            var percentComplete = Math.round(evt.loaded * 100 / evt.total);
+            document.getElementById('progressNumber').innerHTML = percentComplete.toString() + "%";
+        } else {
+            document.getElementById('progressNumber').innerHTML = 'unable to compute';
+        }
+    };
+
+    //------------------------------------------------------------------------------------------------------------------------------------
+
+    function uploadComplete(evt) {
+        // This event is raised when the server send back a response
+        //alert(evt.target.responseText);
+
+        if (start < SIZE) {
+            chunk = blob.slice(start, end);
+
+            uploadFile(chunk, part);
+
+            start = end;
+            end = start + BYTES_PER_CHUNK;
+            part = part + 1;
+        } else {
+            uploadFinsh();
+            console.log("tamamı ile bittti looo gurban");
+        }
+    };
+
+    //------------------------------------------------------------------------------------------------------------------------------------
+
+    function uploadFailed(evt) {
+        alert("There was an error attempting to upload the file.");
+    };
+
+    //------------------------------------------------------------------------------------------------------------------------------------
+
+    function uploadCanceled(evt) {
+        xhr.abort();
+        xhr = null;
+        alert("The upload has been canceled by the user or the browser dropped the connection.");
+    };
+    //--
+
+</script>
+
 </body>
 </html>

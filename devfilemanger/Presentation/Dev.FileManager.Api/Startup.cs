@@ -20,12 +20,14 @@ namespace Dev.FileManager.Api
                 new FileManagerProviderBase(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")));
 
             services.AddSingleton<IDevFileProvider, DevFileProvider>();
-            
+
             services.AddSingleton<IFilesManager, FilesManager>();
 
             services.AddSingleton<IFileProvider>(
                new PhysicalFileProvider(
                    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")));
+
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,9 +40,12 @@ namespace Dev.FileManager.Api
 
             app.UseHttpsRedirection();
             app.UseRouting();
-
+            app.UseCors(builder => builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
             app.UseAuthorization();
-
+            app.UseStaticFiles();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
