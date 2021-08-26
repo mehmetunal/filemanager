@@ -1,4 +1,5 @@
-﻿using Dev.Framework.Api;
+﻿using Dev.Core.IO;
+using Dev.Framework.Api;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,14 +12,21 @@ namespace Dev.FileManager.Api.Controllers
     [Route("api/files")]
     public class FilesController : BaseApiController
     {
-        private readonly ResponseContext _responseData;
-        private IHostingEnvironment _environment;
         private readonly string _tempFolder;
-        public FilesController(IHostingEnvironment environment)
+        private readonly IFilesManager _filesManager;
+        private readonly ResponseContext _responseData;
+        private readonly IDevFileProvider _devFileProvider;
+        private readonly string _root;
+        public FilesController(
+            IFilesManager filesManager,
+            IDevFileProvider devFileProvider
+            )
         {
-            _environment = environment;
+            _filesManager = filesManager;
+            _devFileProvider = devFileProvider;
             _responseData = new ResponseContext();
-            _tempFolder = _environment.WebRootPath + "/Temp";
+            _root = _devFileProvider.GetAbsolutePath("/");
+            _tempFolder = $"{_root}/Temp";
         }
 
         [HttpPost("upload")]
@@ -26,24 +34,10 @@ namespace Dev.FileManager.Api.Controllers
         {
             try
             {
-                var chunkNumber = num;
-                string newpath = Path.Combine(_tempFolder, file + chunkNumber);
-                if (!Directory.Exists(_tempFolder))
-                {
-                    Directory.CreateDirectory(_tempFolder);
-                }
+                var fileName = file + num;
 
-                using (FileStream fs = System.IO.File.Create(newpath))
-                //Create the file in your file system with the name you want.
-                {
-                    using (MemoryStream ms = new MemoryStream())
-                    {
-                        //Copy the uploaded file data to a memory stream
-                        fileToUpload.CopyTo(ms);
-                        //Now write the data in the memory stream to the new file
-                        fs.Write(ms.ToArray());
-                    }
-                }
+                _filesManager.FolderCreat(_tempFolder);
+                _filesManager.FilesCreat(_tempFolder, fileToUpload, fileName);
             }
             catch (Exception ex)
             {
@@ -59,12 +53,12 @@ namespace Dev.FileManager.Api.Controllers
             {
                 string tempPath = _tempFolder;
                 string newPath = Path.Combine(tempPath, fileName);
-                string[] filePaths = Directory.GetFiles(tempPath).Where(p => p.Contains(fileName)).OrderBy(p => Int32.Parse(p.Replace(fileName, "$").Split('$')[1])).ToArray();
+                string[] filePaths = _devFileProvider.GetFiles(tempPath).Where(p => p.Contains(fileName)).OrderBy(p => Int32.Parse(p.Replace(fileName, "$").Split('$')[1])).ToArray();
                 foreach (string filePath in filePaths)
                 {
-                    MergeChunks(newPath, filePath);
+                    _filesManager.MergeChunks(newPath, filePath);
                 }
-                System.IO.File.Move(Path.Combine(tempPath, fileName), Path.Combine(_environment.WebRootPath, fileName));
+                _devFileProvider.FileMove(Path.Combine(tempPath, fileName), Path.Combine(_root, fileName));
             }
             catch (Exception ex)
             {
@@ -72,29 +66,6 @@ namespace Dev.FileManager.Api.Controllers
                 _responseData.IsSuccess = false;
             }
             return Ok(_responseData);
-        }
-        private static void MergeChunks(string chunk1, string chunk2)
-        {
-            FileStream fs1 = null;
-            FileStream fs2 = null;
-            try
-            {
-                fs1 = System.IO.File.Open(chunk1, FileMode.Append);
-                fs2 = System.IO.File.Open(chunk2, FileMode.Open);
-                byte[] fs2Content = new byte[fs2.Length];
-                fs2.Read(fs2Content, 0, (int)fs2.Length);
-                fs1.Write(fs2Content, 0, (int)fs2.Length);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message + " : " + ex.StackTrace);
-            }
-            finally
-            {
-                if (fs1 != null) fs1.Close();
-                if (fs2 != null) fs2.Close();
-                System.IO.File.Delete(chunk2);
-            }
         }
     }
 }

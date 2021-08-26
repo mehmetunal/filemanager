@@ -1,73 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4d952606-828f-4325-a6cf-6d4b47d8518f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../frontend.old/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/.idea/frontend.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/.idea/watcherTasks.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/font-awesome/HELP-US-OUT.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/font-awesome/css/font-awesome.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/font-awesome/css/font-awesome.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/font-awesome/fonts/FontAwesome.otf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/font-awesome/fonts/fontawesome-webfont.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/font-awesome/fonts/fontawesome-webfont.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/font-awesome/fonts/fontawesome-webfont.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/font-awesome/fonts/fontawesome-webfont.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/font-awesome/fonts/fontawesome-webfont.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/font-awesome/less/animated.less" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/font-awesome/less/bordered-pulled.less" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/font-awesome/less/core.less" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/font-awesome/less/fixed-width.less" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/font-awesome/less/font-awesome.less" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/font-awesome/less/icons.less" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/font-awesome/less/larger.less" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/font-awesome/less/list.less" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/font-awesome/less/mixins.less" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/font-awesome/less/path.less" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/font-awesome/less/rotated-flipped.less" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/font-awesome/less/screen-reader.less" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/font-awesome/less/stacked.less" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/font-awesome/less/variables.less" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/font-awesome/scss/_animated.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/font-awesome/scss/_bordered-pulled.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/font-awesome/scss/_core.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/font-awesome/scss/_fixed-width.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/font-awesome/scss/_icons.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/font-awesome/scss/_larger.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/font-awesome/scss/_list.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/font-awesome/scss/_mixins.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/font-awesome/scss/_path.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/font-awesome/scss/_rotated-flipped.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/font-awesome/scss/_screen-reader.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/font-awesome/scss/_stacked.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/font-awesome/scss/_variables.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/font-awesome/scss/font-awesome.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/img/clear.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/img/closed.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/img/collapse.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/img/completed-indicator.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/img/completed.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/img/expand.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/img/failed-indicator.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/img/failed.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/img/open.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/img/paused-indicator.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/img/paused.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/img/resume.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/img/retry.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/js/site.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/js/uploader.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/style/reset.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/style/site.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/content/style/uploader.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend.old/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/content/js/jquery.fs.dropper.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../devfilemanger/Presentation/Dev.FileManager.Api/Controllers/FilesController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../devfilemanger/Presentation/Dev.FileManager.Api/Controllers/FilesController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../devfilemanger/Presentation/Dev.FileManager.Api/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../devfilemanger/Presentation/Dev.FileManager.Api/Startup.cs" afterDir="false" />
-    </list>
+    <list default="true" id="4d952606-828f-4325-a6cf-6d4b47d8518f" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -117,7 +51,7 @@
       <option name="presentableId" value="Default" />
       <updated>1629881625328</updated>
       <workItem from="1629881626570" duration="1971000" />
-      <workItem from="1629883947096" duration="25239000" />
+      <workItem from="1629883947096" duration="25500000" />
     </task>
     <servers />
   </component>
