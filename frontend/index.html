@@ -25,6 +25,10 @@
     var BYTES_PER_CHUNK;
     var xhr;
     var chunk;
+    var ROOT_API = "https://localhost:44358/api/";
+    var API_UPLOAD = `${ROOT_API}files/upload`;
+    var API_uploadComplete = `${ROOT_API}files/uploadComplete`;
+    var file;
 
     document.addEventListener('DOMContentLoaded', function () {
         const fileInput = document.getElementById('fileToUpload');
@@ -33,9 +37,10 @@
             //multiple bug var o çözülücek tekil de sorunsuz çalışıyor.
             for (let i = 0; i < selectedFiles.length; i++) {
                 console.log(i);
-                let file = selectedFiles[i];
-                console.log(file);
-                sendRequest(file);
+                let selectedFile = selectedFiles[i];
+                file = selectedFile;
+                console.log(selectedFile);
+                sendRequest(selectedFile);
             }
         }
     }, false);
@@ -75,7 +80,6 @@
     //------------------------------------------------------------------------------------------------------------------------------------
 
     function uploadFile(blobFile, part) {
-        var file = document.getElementById('fileToUpload').files[0];
         var fd = new FormData();
         fd.append("fileToUpload", blobFile);
 
@@ -86,9 +90,7 @@
         xhr.addEventListener("abort", uploadCanceled, false);
 
 
-        var api_file = "https://localhost:44358/api/files/upload"
-
-        xhr.open("POST", api_file + "?" + "file=" + file.name + "&num=" + parseInt(part));
+        xhr.open("POST", API_UPLOAD + "?" + "file=" + file.name + "&num=" + parseInt(part));
         xhr.onload = function (e) {
             //alert("loaded!");
         };
@@ -102,17 +104,12 @@
     //------------------------------------------------------------------------------------------------------------------------------------
 
     function uploadFinsh() {
-        var file = document.getElementById('fileToUpload').files[0];
-
         var xhr = new XMLHttpRequest();
         xhr.upload.addEventListener("progress", uploadProgress, false);
         xhr.addEventListener("error", uploadFailed, false);
         xhr.addEventListener("abort", uploadCanceled, false);
 
-
-        var api_file = "https://localhost:44358/api/files/uploadComplete"
-
-        xhr.open("POST", api_file + "?" + "fileName=" + file.name);
+        xhr.open("POST", API_uploadComplete + "?" + "fileName=" + file.name);
         xhr.onload = function (e) {
             //alert("loaded!");
         };
