@@ -30,6 +30,7 @@
         const fileInput = document.getElementById('fileToUpload');
         fileInput.onchange = () => {
             const selectedFiles = fileInput.files;
+            //multiple bug var o çözülücek tekil de sorunsuz çalışıyor.
             for (let i = 0; i < selectedFiles.length; i++) {
                 console.log(i);
                 let file = selectedFiles[i];
